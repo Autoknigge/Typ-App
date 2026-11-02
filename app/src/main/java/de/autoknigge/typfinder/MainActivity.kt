@@ -398,7 +398,7 @@ class MainActivity : AppCompatActivity() {
                 setPadding(dp(14), dp(12), dp(14), dp(14))
             }
             hint.addView(text("Genauer wissen?", 16f, GOLD, true))
-            hint.addView(text("Die tiefgreifende, umfangreiche Analyse zu deinem Ergebnis bekommst du als PDF-Bericht für 99 €: mit Erklärungen zu Typ, Untertyp und Flügel, Weiterentwicklung, Beruf und Beziehungen.", 13f, INK), lp(6))
+            hint.addView(text("Die tiefgreifende, umfangreiche Analyse zu deinem Ergebnis bekommst du als PDF-Bericht ab 99 €: mit Erklärungen zu Typ, Untertyp und Flügel, Weiterentwicklung, Beruf und Beziehungen. Mehrere Analysen sind günstiger.", 13f, INK), lp(6))
             hint.addView(text("autoknigge.de/analyse", 14f, GOLD, true).apply { paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG }, lp(6))
             hint.addView(bigButton("🔎", "Mehr zur Analyse", "Öffnet autoknigge.de im Browser") { Ui.openUrl(this@MainActivity, "https://autoknigge.de/analyse?e=$code") }, lp(10))
             c.addView(hint, lp(22))
