@@ -7,7 +7,7 @@ object Dynamik {
     val GRUNDKONFLIKT = mapOf(
         1 to "Zorn, Fehlerhaftigkeit und der Anspruch, richtig zu sein.",
         2 to "Eigene Bedürftigkeit, Liebe und Anerkennung.",
-        3 to "Selbstwert, Leistungsdruck und die Sorge, ohne Erfolg nicht genug zu sein.",
+        3 to "Selbstwert, Identität und Anerkennung durch Leistung.",
         4 to "Mangel, Neid und die Suche nach der eigenen Identität.",
         5 to "Überforderung, Rückzug und das Bedürfnis nach Autonomie.",
         6 to "Angst, Unsicherheit und das Bedürfnis nach Orientierung.",
@@ -36,7 +36,7 @@ object Dynamik {
         "SX6" to Sub("Stärke", "Versucht, durch Mut, Konfrontation und Stärke die eigene Angst zu überwinden.", "Verletzlichkeit zulassen, ohne Stärke zu verlieren."),
         "SP7" to Sub("Netzwerken/Familie", "Versucht, durch Kontakte, Gegenseitigkeit und geschickte Beziehungen Sicherheit und Versorgung zu gewährleisten.", "Nicht alles absichern und kontrollieren müssen."),
         "SO7" to Sub("Opferbereitschaft", "Versucht, durch Ideale, Großzügigkeit und Verzicht auf eigene Bedürfnisse moralische Zugehörigkeit zu gewinnen.", "Eigene Bedürfnisse und Grenzen anerkennen."),
-        "SX7" to Sub("Faszination/Fantasie", "Versucht, durch Begeisterung, Fantasie und das Idealisieren von Menschen und Möglichkeiten Intensität zu erleben und innere Leere zu überbrücken.", "Mit der Wirklichkeit in Kontakt bleiben, auch wenn sie weniger schillernd ist."),
+        "SX7" to Sub("Suggestibilität", "Versucht, durch Begeisterung, Fantasie und idealisierte Möglichkeiten der Realität und ihren Begrenzungen zu entkommen.", "Wirklichkeit annehmen und Verbindlichkeit leben."),
         "SP8" to Sub("Befriedigung", "Versucht, durch Selbstversorgung, materielle Sicherheit und Unabhängigkeit niemandem etwas schuldig zu sein.", "Bedürfnisse und Abhängigkeit zulassen."),
         "SO8" to Sub("Solidarität/Mittäterschaft", "Versucht, durch Schutz, Loyalität und Führung eine starke Gemeinschaft zu schaffen.", "Nicht immer kämpfen oder bestimmen müssen."),
         "SX8" to Sub("Besitzergreifung", "Versucht, durch Intensität, Dominanz und Verschmelzung in Beziehungen absolute Nähe und Kontrolle zu gewinnen.", "Vertrauen ohne Besitzanspruch."),
