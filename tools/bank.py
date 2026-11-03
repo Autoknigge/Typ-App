@@ -178,6 +178,19 @@ add(id="ZH", st="Z", q="Hast oder hattest du eine der folgenden Hautkrankheiten?
        {"t":"Keine davon.","w":{"2":0.5,"3":0.5,"5":0.5,"8":0.5},"x":True}])
 for (q,yes,w,zid) in ZK:
     add(id=zid, st="Z", q=q, o=[{"t":yes,"w":w},{"t":"Nein oder kaum.","w":{}}])
+# Seelische Belastungen und Verhaltensmuster (Mehrfachantwort). Nur Tendenzen, nie ein Ausschluss, keine Diagnose.
+add(id="ZP", st="Z", q="Trifft etwas davon auf dich zu oder traf es zeitweise zu? (Mehrere Antworten sind möglich. Das sind nur Hinweise, keine Diagnosen, und schließen keinen Typ aus.)",
+    o=[{"t":"Ständige Depressionen.","w":{"4":1}},
+       {"t":"Manisch-depressive Phasen.","w":{"7":1}},
+       {"t":"Burnout.","w":{"3":1}},
+       {"t":"Essstörung (zum Beispiel Bulimie).","w":{"4":1,"7":1}},
+       {"t":"Ängste oder Phobien.","w":{"6":1}},
+       {"t":"Asperger oder Autismus.","w":{"5":1}},
+       {"t":"Alkohol- oder Nikotinsucht.","w":{"7":1}},
+       {"t":"Glücksspielsucht.","w":{"7":1,"9":1}},
+       {"t":"ADHS.","w":{"7":1}},
+       {"t":"Prüfungsangst.","w":{"9":1}},
+       {"t":"Keine davon.","w":{},"x":True}])
 for i,(q,opts) in enumerate(BL,1):
     add(id=f"BL{i}", st="K", q=q, o=[{"t":t_,"w":w_} for t_,w_ in opts])
 # Beobachtbare Dimensionen des Blicks und der Mimik (Selbstbeobachtung; sanfte Hinweise)
