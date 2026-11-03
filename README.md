@@ -15,3 +15,5 @@ Dieses Repo enthält die einfache, öffentliche App (Typ, Untertyp und Flügel, 
 Stand: Fragenkatalog mit neuen Körperfragen (ZA bis ZE), Build auf Zuruf.
 
 Build mit Zusatzfragen zum Untertyp.
+
+Build mit Antwortreihenfolge, Appetit-Satz und Art-Erklärung.
