@@ -4,7 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 /** Geführte Befragung zu Instinkt, Zentrum, Typ, Untertyp und Flügel. Alles offline, nichts wird übertragen. */
-class TFOption(val text: String, val w: Map<String, Double>)
+class TFOption(val text: String, val w: Map<String, Double>, val excl: Boolean = false)
 
 class TFQuestion(val id: String, val st: String, val ty: List<Int>, val pair: Boolean, val q: String, val o: List<TFOption>)
 
@@ -59,7 +59,7 @@ class TypFinder(json: String) {
                 q.optBoolean("pair", false), q.getString("q"),
                 (0 until o.length()).map { j ->
                     val oo = o.getJSONObject(j); val w = oo.getJSONObject("w")
-                    TFOption(oo.getString("t"), w.keys().asSequence().associateWith { k -> w.getDouble(k) })
+                    TFOption(oo.getString("t"), w.keys().asSequence().associateWith { k -> w.getDouble(k) }, oo.optBoolean("x", false))
                 }
             )
         }

@@ -300,7 +300,8 @@ class MainActivity : AppCompatActivity() {
                     setOnClickListener {
                         val set = sel.getOrPut(q.id) { mutableSetOf() }
                         if (idx < 0) { set.clear(); set.add(-1) }
-                        else { set.remove(-1); if (!set.add(idx)) set.remove(idx) }
+                        else if (q.o[idx].excl) { val was = set.contains(idx); set.clear(); if (!was) set.add(idx) }   // „Keine davon“ schließt die anderen Antworten aus
+                        else { set.remove(-1); set.removeAll { it >= 0 && q.o[it].excl }; if (!set.add(idx)) set.remove(idx) }
                         if (set.isEmpty()) sel.remove(q.id)
                         restyle()
                     }

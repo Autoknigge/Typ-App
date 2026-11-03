@@ -161,19 +161,23 @@ BL = [
 ]
 # ---- Stufe Z: körperliche Hinweise (nur Tendenzen, nie ein Ausschluss: „Nein“ hat bewusst kein Gewicht) ----
 ZK = [
- ("Hast oder hattest du eine ausgeprägte Akne?",
-  "Ja, deutlich.", {"6":1,"9":1,"1":1,"4":1}),
  ("Kaust du an den Fingernägeln?",
-  "Ja, regelmäßig oder früher häufig.", {"9":1,"7":1}),
+  "Ja, regelmäßig oder früher häufig.", {"9":1,"7":1}, "Z3"),
  ("Hast du rheumatische Beschwerden (zum Beispiel Gelenkschmerzen oder Steifheit)?",
-  "Ja.", {"7":1}),
+  "Ja.", {"7":1}, "Z4"),
 ]
 add(id="Z1", st="Z", q="Wenn du deine Stirn im Spiegel betrachtest: Wie sehen deine Stirnfalten aus? (Mehrere Antworten sind möglich.)",
     o=[{"t":"Eine ausgeprägte senkrechte Falte zwischen den Augenbrauen (die „Zornesfalte“).","w":{"1":1.5,"9":1.5}},
        {"t":"Querfalten, die wie ein V auf der Stirn angeordnet sind.","w":{"3":1.5}},
        {"t":"Eher glatt oder andere Falten, ohne senkrechte Falte und ohne V.","w":{}}])
-for i,(q,yes,w) in enumerate(ZK,2):
-    add(id=f"Z{i}", st="Z", q=q, o=[{"t":yes,"w":w},{"t":"Nein oder kaum.","w":{}}])
+# Haut (Mehrfachantwort). Nur Tendenzen: „Keine davon“ spricht eher für andere Typen (2, 3, 5, 8), schließt aber nichts aus.
+add(id="ZH", st="Z", q="Hast oder hattest du eine der folgenden Hautkrankheiten? (Mehrere Antworten sind möglich.)",
+    o=[{"t":"Ausgeprägte Akne.","w":{"6":1,"9":1,"1":1,"4":1}},
+       {"t":"Vitiligo (Weißfleckenkrankheit).","w":{"4":1,"7":1}},
+       {"t":"Neurodermitis.","w":{"9":1}},
+       {"t":"Keine davon.","w":{"2":0.5,"3":0.5,"5":0.5,"8":0.5},"x":True}])
+for (q,yes,w,zid) in ZK:
+    add(id=zid, st="Z", q=q, o=[{"t":yes,"w":w},{"t":"Nein oder kaum.","w":{}}])
 for i,(q,opts) in enumerate(BL,1):
     add(id=f"BL{i}", st="K", q=q, o=[{"t":t_,"w":w_} for t_,w_ in opts])
 # Beobachtbare Dimensionen des Blicks und der Mimik (Selbstbeobachtung; sanfte Hinweise)
