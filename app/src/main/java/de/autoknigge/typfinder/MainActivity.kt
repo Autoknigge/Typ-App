@@ -355,10 +355,21 @@ class MainActivity : AppCompatActivity() {
             if (sub != null) {
                 c.addView(text("${r.sub} · ${sub.first}", 16f, INK, true), lp(2))
                 c.addView(text(sub.second, 14f, DIM), lp(2))
+                Dynamik.SUB[r.sub]?.let { dy ->
+                    c.addView(text("Grundkonflikt von Typ $top", 13f, GOLD, true), lp(12))
+                    c.addView(text(Dynamik.GRUNDKONFLIKT[top] ?: "", 14f, INK), lp(2))
+                    c.addView(text("Unbewusste Dynamik · ${dy.name}", 13f, GOLD, true), lp(10))
+                    c.addView(text(dy.dynamik, 14f, INK), lp(2))
+                    c.addView(text("Entwicklung", 13f, GOLD, true), lp(10))
+                    c.addView(text(dy.entwicklung, 14f, INK), lp(2))
+                }
                 c.addView(text("Art: ${TypFinder.subKind(r.sub)}", 13f, GOLD), lp(6))
                 TypFinder.VERWECHSELT[r.sub]?.let { c.addView(text("Wird oft verwechselt mit: $it", 12f, DIM), lp(2)) }
                 if (r.sub in TypFinder.KONTRA) c.addView(text("Hinweis: Kontratypen sind besonders schwer zu bestimmen, weil der Instinkt der Grundleidenschaft entgegenwirkt.", 12f, DIM), lp(6))
             }
+            c.addView(text("Die Kernfrage", 13f, GOLD, true), lp(14))
+            c.addView(text(Dynamik.KERNFRAGE, 14f, INK, true), lp(2))
+            c.addView(text(Dynamik.HINWEIS, 12f, DIM), lp(4))
             c.addView(text("Flügel", 13f, GOLD, true), lp(14))
             c.addView(text(if (r.wing != null) "${top}w${r.wing}" else "Kein klarer Flügel erkennbar", 15f, INK), lp(2))
             if (r.pro.isNotEmpty()) {
