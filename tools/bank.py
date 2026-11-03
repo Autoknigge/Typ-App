@@ -180,6 +180,53 @@ add(id="ZH", st="Z", q="Hast oder hattest du eine der folgenden Haut- oder ander
        {"t":"Tumorerkrankung (auch früher).","w":{"1":1}},
        {"t":"Blinddarmentzündung oder -entfernung (auch früher).","w":{"7":1}},
        {"t":"Keine davon.","w":{"2":0.5,"3":0.5,"5":0.5,"8":0.5},"x":True}])
+# Weitere körperliche Hinweise aus der Symptomliste (Mehrfachantwort). Nur Tendenzen, nie ein Ausschluss, keine Diagnose.
+ZX_HINT = " (Mehrere Antworten sind möglich. Das sind nur Hinweise, keine Diagnosen, und schließen keinen Typ aus.)"
+ZX = [
+ ("ZA", "Trifft etwas davon auf Atmung, Herz, Schlaf oder Wärmeempfinden zu, jetzt oder früher?",
+  [("Atemaussetzer beim Einschlafen.", {"6":1,"8":1}),
+   ("Atemwegsbeschwerden oder Asthma.", {"2":1,"5":1,"8":1,"9":1}),
+   ("Herzprobleme oder Angina Pectoris.", {"3":1}),
+   ("Erkrankungen des Gefäßsystems.", {"7":1}),
+   ("Erweiterte Gesichtsvenen.", {"6":1}),
+   ("Zähneknirschen im Schlaf.", {"7":1,"9":1}),
+   ("Ich friere schnell und bin allgemein kälteempfindlich.", {"1":1,"6":1,"8":1,"9":1})]),
+ ("ZB", "Trifft etwas davon auf Kopf, Nerven oder Bewegung zu, jetzt oder früher?",
+  [("Epilepsie.", {"2":1,"4":1,"5":1,"6":1,"7":1}),
+   ("Migräne.", {"3":1,"5":1,"7":1,"9":1}),
+   ("Hirnhautentzündung.", {"5":1,"7":1}),
+   ("Mein Kopf ist empfindlich gegen Berührung.", {"7":1}),
+   ("Parkinson.", {"5":1}),
+   ("Muskel- oder Sehnenzucken.", {"2":1,"3":1,"6":1}),
+   ("Restless Legs, MS oder ständige Unruhe in den Beinen.", {"3":1}),
+   ("Stottern oder holpriges Sprechen.", {"3":1,"5":1}),
+   ("Häufiger Schluckauf.", {"2":1,"4":1,"5":1,"7":1,"8":1})]),
+ ("ZC", "Trifft etwas davon auf deine Sinne oder deine Empfindlichkeit zu?",
+  [("Ich bin geräusch- oder lärmempfindlich.", {"7":1,"9":1}),
+   ("Mein Geruchssinn ist besonders empfindlich.", {"7":1}),
+   ("Ich habe auffällige Augenringe.", {"3":1,"8":1}),
+   ("Netzhautablösung (auch früher).", {"7":1}),
+   ("Ohrenentzündungen (auch früher).", {"7":1}),
+   ("Häufige Heiserkeit.", {"5":1,"7":1})]),
+ ("ZD", "Trifft etwas davon auf Verdauung, Appetit oder Infektionen zu, jetzt oder früher?",
+  [("Gallensteinkoliken.", {"7":1}),
+   ("Sodbrennen oder Magensäure.", {"7":1}),
+   ("Ich habe einen großen Appetit.", {"7":1,"8":1,"9":1}),
+   ("Magersucht.", {"3":1,"7":1}),
+   ("Blutvergiftung (auch früher).", {"7":1}),
+   ("Furunkel oder Eiterherde.", {"7":1}),
+   ("Scharlach (auch früher).", {"7":1}),
+   ("Besonders hohes Fieber bei Krankheiten.", {"7":1}),
+   ("Krankheiten verlaufen bei mir heftig und plötzlich.", {"7":1})]),
+ ("ZE", "Trifft etwas davon auf dein Verhalten zu?",
+  [("Ich bin eher geizig oder sparsam bis zur Knauserigkeit.", {"1":1,"5":1}),
+   ("Ich bin eher verschwenderisch.", {"7":1}),
+   ("Ich werde zornig, tobe oder schlage um mich.", {"7":1}),
+   ("Ich bin oft ruhelos.", {"3":1})]),
+]
+for (zid, q, opts) in ZX:
+    add(id=zid, st="Z", q=q + ZX_HINT,
+        o=[{"t":t_,"w":w_} for t_,w_ in opts] + [{"t":"Keine davon.","w":{},"x":True}])
 for (q,yes,w,zid) in ZK:
     add(id=zid, st="Z", q=q, o=[{"t":yes,"w":w},{"t":"Nein oder kaum.","w":{}}])
 # Seelische Belastungen und Verhaltensmuster (Mehrfachantwort). Nur Tendenzen, nie ein Ausschluss, keine Diagnose.
