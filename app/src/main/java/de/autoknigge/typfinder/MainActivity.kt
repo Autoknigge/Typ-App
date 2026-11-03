@@ -345,8 +345,8 @@ class MainActivity : AppCompatActivity() {
             val head = "Typ $top · ${TypFinder.TYPE_NAMES[top]}"
             c.addView(text(head, 20f, GOLD, true), lp(4))
             c.addView(text("Sicherheit: ${r.confidence}", 14f, INK), lp(2))
-            if (r.confidence == "offen") c.addView(text("Zwei bis drei Typen liegen nah beieinander. Prüfe sie im Buch (Seiten 79 bis 82) oder starte den Test später noch einmal.", 13f, DIM), lp(4))
-            c.addView(text("Seite (Buch, Seite 8)", 13f, GOLD, true), lp(16))
+            if (r.confidence == "offen") c.addView(text("Zwei bis drei Typen liegen nah beieinander. Starte den Test später noch einmal oder beobachte dich im Alltag.", 13f, DIM), lp(4))
+            c.addView(text("Seite", 13f, GOLD, true), lp(16))
             c.addView(text(when (top) { in 5..8 -> "Männliche Seite (5 bis 8): ausrichtende Kraft, „Ich setze in Bewegung.“"; in 1..4 -> "Weibliche Seite (1 bis 4): aufnehmende Kraft, „Ich lasse entstehen.“"; else -> "Die 9 vermittelt zwischen den beiden Seiten." }, 15f, INK), lp(2))
             c.addView(text("Instinkt", 13f, GOLD, true), lp(16))
             val i0 = TypFinder.INST_NAMES[r.inst[0].first] ?: ""
@@ -357,7 +357,7 @@ class MainActivity : AppCompatActivity() {
                 c.addView(text(sub.second, 14f, DIM), lp(2))
                 c.addView(text("Art: ${TypFinder.subKind(r.sub)}", 13f, GOLD), lp(6))
                 TypFinder.VERWECHSELT[r.sub]?.let { c.addView(text("Wird oft verwechselt mit: $it", 12f, DIM), lp(2)) }
-                if (r.sub in TypFinder.KONTRA) c.addView(text("Hinweis (Buch, Seite 37): Kontratypen sind besonders schwer zu bestimmen, weil der Instinkt der Grundleidenschaft entgegenwirkt.", 12f, DIM), lp(6))
+                if (r.sub in TypFinder.KONTRA) c.addView(text("Hinweis: Kontratypen sind besonders schwer zu bestimmen, weil der Instinkt der Grundleidenschaft entgegenwirkt.", 12f, DIM), lp(6))
             }
             c.addView(text("Flügel", 13f, GOLD, true), lp(14))
             c.addView(text(if (r.wing != null) "${top}w${r.wing}" else "Kein klarer Flügel erkennbar", 15f, INK), lp(2))
@@ -368,11 +368,9 @@ class MainActivity : AppCompatActivity() {
             val run = r.types[1].first
             c.addView(text("Auch möglich: Typ $run · ${TypFinder.TYPE_NAMES[run]}", 13f, GOLD, true), lp(14))
             for (s in r.contra) c.addView(text("• $s", 14f, DIM), lp(4))
-            c.addView(text("Prüffrage zum Gegenlesen: Buch, Seite 82.", 13f, DIM), lp(6))
             if (top == 9 || run == 9) c.addView(text("Zur 9: Sie ist nicht einfach Passivität oder Konfliktvermeidung. Sieh sie erst dann als sichere Einordnung, wenn sich ein wiederkehrendes Muster des Vermittelns, Anpassens oder Verlusts des eigenen Standpunkts zeigt, nicht bloß, weil die Antworten gemischt ausgefallen sind.", 12f, DIM), lp(6))
             c.addView(text("Rangliste: " + r.types.joinToString(" · ") { "Typ ${it.first}" }, 13f, DIM), lp(10))
             c.addView(text("Grundlage: ${r.questionsAsked} Antworten. Das Ergebnis ist eine Einladung zum Prüfen, kein festes Etikett.", 12f, DIM), lp(8))
-            c.addView(text("Zum Nachlesen im Buch „Enneagramm – Matrix des Lebens“ von Marc Krekler: Untertypen Seite ${27 + top}, Typ erkennen Seiten 79 bis 82, Seite und Zentren Seiten 8 bis 10.", 13f, DIM), lp(14))
             c.addView(bigButton("📤", "Ergebnis teilen", "") {
                 val msg = "Mein Ergebnis im Enneagramm Typ-Finder: Typ $top, ${r.sub}" + (r.wing?.let { ", Flügel ${top}w$it" } ?: "") + ". Sicherheit: ${r.confidence}. Eine Einladung zum Prüfen, kein Etikett."
                 startActivity(android.content.Intent.createChooser(android.content.Intent(android.content.Intent.ACTION_SEND).apply { type = "text/plain"; putExtra(android.content.Intent.EXTRA_TEXT, msg) }, "Teilen"))
