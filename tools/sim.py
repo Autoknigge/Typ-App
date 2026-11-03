@@ -99,7 +99,7 @@ def pick(s):
             top=ranked(s)[0]
             left=[q for q in pool("D") if q["ty"]==[top] and q["id"] not in s.asked]
             dn=sum(1 for q in pool("D") if q["ty"]==[top] and q["id"] in s.asked)
-            if left and (dn==0 or (dn<5 and lead(list(s.i.values()))<4.0)): return "Untertyp",left[:(3 if dn==0 else 2)]
+            if left and (dn==0 or (dn<8 and lead(list(s.i.values()))<4.0)): return "Untertyp",left[:(3 if dn==0 else 2)]
             s.phase="E"
             continue
         if ph=="E":

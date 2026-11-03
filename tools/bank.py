@@ -739,6 +739,41 @@ body=[q for q in Q if q.get("body")]
 rest=[q for q in Q if not q.get("body")]
 i0=next(i for i,q in enumerate(rest) if q["st"]=="S")
 Q[:]=rest[:i0]+body+rest[i0:]
+
+# ---- Zusatzfragen zum Untertyp: Alltagsszenen mit dem spontanen Gedanken je Untertyp. Sie kommen nur dran, wenn die bisherigen Antworten unklar bleiben (Stufe D, bis zu 8 Fragen je Typ). ----
+DS = [
+ (1,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Ich habe etwas übersehen, ich hätte besser vorbereiten müssen.', 'Ich habe nach den Regeln gearbeitet, die Kritik ist unbegründet.', 'Wie kann er das sagen? Ich meine es doch gut!']),
+ (1,2,'Jemand widerspricht dir deutlich oder will dir etwas vorschreiben.',['Ich muss ruhig bleiben und alles sachlich klären.', 'So geht das nicht, hier gelten Regeln.', 'Das muss ich klären, das darf so nicht stehen bleiben.']),
+ (1,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Ich muss helfen, und zwar richtig.', 'Ich bin verantwortlich und muss ein Vorbild sein.', 'Ich will dir helfen, besser zu werden.']),
+ (2,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Man mag mich nicht mehr.', 'Ohne mich geht es nicht, wie kann man das sagen?', 'Er oder sie mag mich nicht mehr.']),
+ (2,2,'Ein guter Freund wird zu einer Feier eingeladen, du selbst nicht.',['Ich wünsche mir, dass jemand an mich denkt.', 'Man hätte mich fragen müssen.', 'Was muss ich tun, damit er mich ganz will?']),
+ (2,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Ich helfe gern, möchte mich aber nicht festlegen.', 'Ich bin hilfreich und wichtig.', 'Endlich ganz gemeint sein.']),
+ (3,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Ich muss noch mehr leisten.', 'Jetzt könnte mein Ansehen leiden.', 'Mit mir stimmt etwas nicht.']),
+ (3,2,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Ich sorge für alles, was nötig ist.', 'Ich muss gut funktionieren.', 'Ich werde gebraucht und gewünscht.']),
+ (3,3,'Ein anderer wird für etwas gelobt oder hat Erfolg, und du bekommst nicht die Anerkennung, die du dir wünschst.',['Gut, aber ich will keine Show.', 'Das ist mein Moment.', 'Wenn die Menschen um mich Erfolg haben, bin ich erfolgreich.']),
+ (4,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Er versteht nicht, was wirklich in mir steckt. Aber ich werde mich nicht beklagen.', 'Er versteht nicht, was wirklich in mir steckt. Wahrscheinlich bin ich wirklich nicht gut genug.', 'Er versteht mich nicht. Wie kann er es wagen?']),
+ (4,2,'Ein guter Freund wird zu einer Feier eingeladen, du selbst nicht.',['Das macht mir nichts. Ich brauche solche Einladungen nicht.', 'Natürlich bin ich wieder derjenige, den niemand dabeihaben möchte.', 'Was ist an diesem anderen Menschen so besonders? Warum wird er mir vorgezogen?']),
+ (4,3,'Ein anderer wird für etwas gelobt oder hat Erfolg, und du bekommst nicht die Anerkennung, die du dir wünschst.',['Das ist nicht der Rede wert.', 'Natürlich haben die anderen es geschafft, ich nicht.', 'Das hätte ich sein müssen.']),
+ (5,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Kann ich mich auf diese Kritik verlassen? Ich ziehe mich zurück und denke nach.', 'Die Kritik ist sachlich nicht richtig. Ich erkläre es.', 'Wenn das von diesem einen Menschen kommt, trifft es mich tief.']),
+ (5,2,'Ein guter Freund wird zu einer Feier eingeladen, du selbst nicht.',['Ich brauche solche Treffen nicht.', 'Wer das Wesentliche nicht sieht, hat mich eben nicht verdient.', 'Wenn mein Mensch dabei ist, ist alles andere nicht wichtig.']),
+ (5,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Wenn ich zu viel gebe, bleibt nichts für mich.', 'Ich unterstütze gern, aber mit Wissen und Rat.', 'Bei dir darf ich ganz offen sein, aber du darfst mich nicht erdrücken.']),
+ (6,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Kann ich mich auf diesen Menschen verlassen? Habe ich ihn enttäuscht?', 'Habe ich die Regeln eingehalten? Wer hat das angeordnet?', 'Wer ist er, dass er mich kritisiert? Ich lasse mir nichts gefallen.']),
+ (6,2,'Jemand widerspricht dir deutlich oder will dir etwas vorschreiben.',['Ich will keinen Streit, ich bin lieber nett.', 'Hier gelten Regeln, und die sind für alle gleich.', 'Ich weiche nicht zurück, Angriff ist die beste Verteidigung.']),
+ (6,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Ich halte zu dir, du hältst zu mir.', 'Ich erfülle meine Pflicht gegenüber dir.', 'Ich beschütze dich, aber ich zeige keine Schwäche.']),
+ (7,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Das ist nur eine Meinung, daraus lässt sich etwas machen.', 'Wahrscheinlich habe ich zu viel an mich gedacht.', 'Er sieht die Möglichkeiten nicht, die ich sehe.']),
+ (7,2,'Ein guter Freund wird zu einer Feier eingeladen, du selbst nicht.',['Dann gehe ich eben zu einem anderen Fest, das ist ohnehin besser.', 'Es geht um die Sache, nicht um mich.', 'Dann gibt es eben etwas Besseres, das Leben hält mehr bereit.']),
+ (7,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Ich helfe gern, aber ich will mich nicht festbinden lassen.', 'Ich opfere mich gern, wenn es anderen gut geht.', 'Ich sehe in dir alles, was ich mir wünsche.']),
+ (8,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Wer glaubt er eigentlich, mir etwas vorschreiben zu können?', 'Das ist ungerecht. Ich muss meine Leute schützen.', 'Das lasse ich nicht gelten! Wer bist du, dass du mir das sagst?']),
+ (8,2,'Ein guter Freund wird zu einer Feier eingeladen, du selbst nicht.',['Mir doch egal, ich brauche das nicht.', 'Ich brauche keine Einladung, ich habe meine Leute.', 'Wenn du mich ausschließt, zeige ich dir, wer ich bin.']),
+ (8,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Ich sorge für dich, aber ich brauche keinen.', 'Ich halte euch den Rücken frei.', 'Du gehörst zu mir, ganz oder gar nicht.']),
+ (9,1,'Jemand kritisiert deine Arbeit oder dein Verhalten.',['Warum muss daraus jetzt ein Problem werden?', 'Warum muss daraus jetzt ein Problem werden? Ich will es allen recht machen.', 'Ich will keinen Streit, ich passe mich an.']),
+ (9,2,'Jemand widerspricht dir deutlich oder will dir etwas vorschreiben.',['Hauptsache, Ruhe. Es soll sich nichts ändern.', 'Wir sollten uns nicht streiten, wir sind doch ein Team.', 'Ich will, was du willst.']),
+ (9,3,'Ein nahestehender Mensch stellt emotionale Ansprüche an dich und braucht deine Unterstützung.',['Mir ist alles recht, wir können auch einfach zu Hause bleiben.', 'Was die anderen machen, ist mir wichtig. Wir können uns danach richten.', 'Was du möchtest, möchte ich auch.']),
+]
+for (ty,n,ausl,gs) in DS:
+    add(id=f"DS{ty}{n}", st="D", ty=[ty], q="Stell dir vor: "+ausl+" Was geht dir als Erstes durch den Kopf?", o=[{"t":"„"+gs[0]+"“","w":{"sp":2}},{"t":"„"+gs[1]+"“","w":{"so":2}},{"t":"„"+gs[2]+"“","w":{"sx":2}}])
+
+
 out=os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","app","src","main","assets","typfinder.json")
 json.dump({"version":1,"questions":Q}, open(out,"w",encoding="utf-8"), ensure_ascii=False, separators=(",",":"))
 from collections import Counter

@@ -189,7 +189,7 @@ class TypFinder(json: String) {
                     val top = ranked(s)[0]
                     val left = pool("D").filter { it.ty == listOf(top) && it.id !in s.asked }
                     val dn = pool("D").count { it.ty == listOf(top) && it.id in s.asked }
-                    if (left.isNotEmpty() && (dn == 0 || (dn < 5 && lead(s.i) < 4.0))) return TFRound("Untertyp", left.take(if (dn == 0) 3 else 2))
+                    if (left.isNotEmpty() && (dn == 0 || (dn < 8 && lead(s.i) < 4.0))) return TFRound("Untertyp", left.take(if (dn == 0) 3 else 2))
                     s.phase = "E"
                     continue
                 }
