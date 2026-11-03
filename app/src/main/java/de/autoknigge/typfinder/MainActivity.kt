@@ -412,7 +412,7 @@ class MainActivity : AppCompatActivity() {
             hint.addView(text("Genauer wissen?", 16f, GOLD, true))
             hint.addView(text("Die tiefgreifende, umfangreiche Analyse zu deinem Ergebnis bekommst du als PDF-Bericht ab 99 €: mit Erklärungen zu Typ, Untertyp und Flügel, Weiterentwicklung, Beruf und Beziehungen. Mehrere Analysen sind günstiger.", 13f, INK), lp(6))
             hint.addView(text("autoknigge.de/analyse", 14f, GOLD, true).apply { paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG }, lp(6))
-            hint.addView(bigButton("🔎", "Mehr zur Analyse", "Öffnet autoknigge.de im Browser") { Ui.openUrl(this@MainActivity, "https://autoknigge.de/analyse?e=$code") }, lp(10))
+            hint.addView(bigButton("🔎", "Mehr zur Analyse", "Öffnet autoknigge.de im Browser") { Ui.openUrl(this@MainActivity, bestellLink(r, savedIdx, code, top)) }, lp(10))
             c.addView(hint, lp(22))
         })
     }
@@ -453,6 +453,14 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("Abbrechen", null).show()
     }
 
+
+    /** Bestelllink mit Kurzauswertung und Ergebnis-Code. Die Seite sendet beides nur, wenn der Nutzer dort zustimmt. */
+    private fun bestellLink(r: TFResult, savedIdx: Int, code: String, top: Int): String {
+        val ans = try { if (savedIdx >= 0) savedList().getJSONObject(savedIdx).optString("ans", "") else encodeAns(tfAnswers) } catch (e: Exception) { "" }
+        val z = "Typ " + r.types.joinToString(" > ") { "${it.first}" } + " | Instinkt " + r.inst.joinToString(" > ") { it.first } +
+            " | Flügel " + (r.wing?.let { "${top}w$it" } ?: "unklar") + " | Sicherheit " + r.confidence
+        return "https://autoknigge.de/analyse?e=" + code + if (ans.isNotBlank()) "&c=" + android.net.Uri.encode(ans) + "&z=" + android.net.Uri.encode(z) else ""
+    }
 
     private fun encodeAns(m: Map<String, List<Int>>) = m.entries.joinToString(";") { "${it.key}:${it.value.joinToString(",")}" }
 
