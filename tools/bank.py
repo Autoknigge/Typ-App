@@ -171,10 +171,13 @@ add(id="Z1", st="Z", q="Wenn du deine Stirn im Spiegel betrachtest: Wie sehen de
        {"t":"Querfalten, die wie ein V auf der Stirn angeordnet sind.","w":{"3":1.5}},
        {"t":"Eher glatt oder andere Falten, ohne senkrechte Falte und ohne V.","w":{}}])
 # Haut (Mehrfachantwort). Nur Tendenzen: „Keine davon“ spricht eher für andere Typen (2, 3, 5, 8), schließt aber nichts aus.
-add(id="ZH", st="Z", q="Hast oder hattest du eine der folgenden Hautkrankheiten? (Mehrere Antworten sind möglich.)",
+add(id="ZH", st="Z", q="Hast oder hattest du eine der folgenden Haut- oder anderen Erkrankungen oder Beschwerden? (Mehrere Antworten sind möglich. Das sind nur Hinweise, keine Diagnosen, und schließen keinen Typ aus.)",
     o=[{"t":"Ausgeprägte Akne.","w":{"6":1,"9":1,"1":1,"4":1}},
        {"t":"Vitiligo (Weißfleckenkrankheit).","w":{"4":1,"7":1}},
        {"t":"Neurodermitis.","w":{"9":1}},
+       {"t":"Juckende Kopfhaut.","w":{"9":1}},
+       {"t":"Allergien oder Überempfindlichkeiten.","w":{"9":1,"4":1}},
+       {"t":"Tumorerkrankung (auch früher).","w":{"1":1}},
        {"t":"Keine davon.","w":{"2":0.5,"3":0.5,"5":0.5,"8":0.5},"x":True}])
 for (q,yes,w,zid) in ZK:
     add(id=zid, st="Z", q=q, o=[{"t":yes,"w":w},{"t":"Nein oder kaum.","w":{}}])
