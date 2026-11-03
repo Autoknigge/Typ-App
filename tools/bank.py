@@ -163,7 +163,7 @@ BL = [
 ZK = [
  ("Kaust du an den Fingernägeln?",
   "Ja, regelmäßig oder früher häufig.", {"9":1,"7":1}, "Z3"),
- ("Hast du rheumatische Beschwerden (zum Beispiel Gelenkschmerzen oder Steifheit)?",
+ ("Hast du rheumatische Beschwerden oder Arthrose (zum Beispiel Gelenkschmerzen oder Steifheit)?",
   "Ja.", {"7":1}, "Z4"),
 ]
 add(id="Z1", st="Z", q="Wenn du deine Stirn im Spiegel betrachtest: Wie sehen deine Stirnfalten aus? (Mehrere Antworten sind möglich.)",
