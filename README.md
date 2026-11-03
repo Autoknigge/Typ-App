@@ -17,3 +17,5 @@ Stand: Fragenkatalog mit neuen Körperfragen (ZA bis ZE), Build auf Zuruf.
 Build mit Zusatzfragen zum Untertyp.
 
 Build mit Antwortreihenfolge, Appetit-Satz und Art-Erklärung.
+
+Build mit Ergebnis-Code im Bestelllink.
