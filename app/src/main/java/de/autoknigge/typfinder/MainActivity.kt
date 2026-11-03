@@ -291,7 +291,8 @@ class MainActivity : AppCompatActivity() {
                     v.background = if (on) card(Color.parseColor("#3C3A1F"), GOLD) else card()
                 }
             }
-            val order = (q.o.indices).toList().shuffled(java.util.Random(q.id.hashCode().toLong()))
+            // Antworten gemischt, „Keine davon“ aber immer als vorletzte Zeile (vor „Kann ich nicht genau sagen“)
+            val order = (q.o.indices).filter { !q.o[it].excl }.shuffled(java.util.Random(q.id.hashCode().toLong())) + (q.o.indices).filter { q.o[it].excl }
             for (idx in order + listOf(-1)) {
                 val label = if (idx < 0) "Kann ich nicht genau sagen / keine passt wirklich" else q.o[idx].text
                 val v = text(label, if (idx < 0) 13f else 15f, if (idx < 0) DIM else INK).apply {

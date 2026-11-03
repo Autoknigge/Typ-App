@@ -211,7 +211,7 @@ ZX = [
  ("ZD", "Trifft etwas davon auf Verdauung, Appetit oder Infektionen zu, jetzt oder früher?",
   [("Gallensteinkoliken.", {"7":1}),
    ("Sodbrennen oder Magensäure.", {"7":1}),
-   ("Ich habe einen großen Appetit.", {"7":1,"8":1,"9":1}),
+   ("Ich habe im Vergleich zu anderen eher einen großen Appetit.", {"7":1,"8":1,"9":1}),
    ("Magersucht.", {"3":1,"7":1}),
    ("Blutvergiftung (auch früher).", {"7":1}),
    ("Furunkel oder Eiterherde.", {"7":1}),
