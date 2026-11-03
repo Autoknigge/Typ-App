@@ -13,3 +13,5 @@ Android-App (Kotlin): geführte Befragung zu Seite, Instinkt, Typ, Untertyp und 
 Dieses Repo enthält die einfache, öffentliche App (Typ, Untertyp und Flügel, mit Werbung). Die Pro-Variante mit PDF-Bericht liegt in einem eigenen privaten Repo.
 
 Stand: Fragenkatalog mit neuen Körperfragen (ZA bis ZE), Build auf Zuruf.
+
+Build mit Zusatzfragen zum Untertyp.
