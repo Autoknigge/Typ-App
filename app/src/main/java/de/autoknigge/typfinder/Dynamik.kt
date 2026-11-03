@@ -57,5 +57,12 @@ object Dynamik {
         "Sexualität/Anziehung (SX)" to "Intensität, Anziehung und besondere Verbindung.")
     val KERNFRAGE = "Was versuche ich durch mein Verhalten zu erreichen, und welches Gefühl versuche ich dadurch zu vermeiden?"
     val KERNFRAGE_TEXT = "Das eigentlich Spannende an der Selbsterkenntnis ist nicht, sich in einer Typenbeschreibung wiederzufinden, sondern genau das zu erkennen. Darin liegt der Unterschied zwischen einer oberflächlichen Typisierung und echter psychodynamischer Enneagramm-Arbeit."
+    /** Erklärt in ein bis zwei Sätzen, was Normaltyp, Verstärkungstyp und Kontratyp bedeutet. */
+    fun artErklaerung(art: String): String = when (art) {
+        "Verstärkungstyp" -> "Was das bedeutet, Verstärkungstyp: Der Instinkt verstärkt die Grundleidenschaft deines Typs. Sie tritt bei dir besonders deutlich und kräftig hervor."
+        "Kontratyp" -> "Was das bedeutet, Kontratyp: Der Instinkt wirkt der Grundleidenschaft entgegen. Die Grundmotivation bleibt dieselbe, wird aber unbewusst verneint oder versteckt. Deshalb passt das Verhalten oft nicht zum erwarteten Typbild, und der Typ ist schwerer zu erkennen."
+        else -> "Was das bedeutet, Normaltyp: Die Grundleidenschaft deines Typs zeigt sich bei dir in ihrer üblichen Form. Die Typbeschreibung passt meist unmittelbar."
+    }
+
     val HINWEIS = "Hinweis: Die Beschreibungen sind eine psychologische Interpretation der Enneagramm-Tradition, insbesondere der Untertypenlehre nach Claudio Naranjo."
 }
