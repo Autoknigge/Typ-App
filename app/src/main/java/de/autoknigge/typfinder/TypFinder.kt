@@ -279,7 +279,7 @@ class TypFinder(json: String) {
         val VERWECHSELT = mapOf(
             "SP2" to "Typ 7 oder Typ 6", "SO2" to "Typ 3 oder Typ 8", "SX2" to "Typ 4 (vor allem den sexuellen Untertyp)",
             "SX3" to "Typ 2", "SP4" to "Typ 1 und Typ 7", "SX4" to "Typ 3 oder Typ 8", "SO6" to "Typ 1",
-            "SX6" to "Typ 8", "SO7" to "Typ 2", "SO8" to "Typ 2"
+            "SX6" to "Typ 8 (der Herausforderer). Auf den ersten Blick wirkst du dem 8er sehr ähnlich. Der Unterschied liegt im Motiv: Die 8 kämpft aus Macht und Eigenwillen, du kämpfst aus einer Verteidigungshaltung gegen eine gefühlte innere Bedrohung oder Angst", "SO7" to "Typ 2", "SO8" to "Typ 2"
         )
         fun subKind(sub: String) = when {
             sub in KONTRA -> "Kontratyp"
