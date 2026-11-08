@@ -57,11 +57,22 @@ object Dynamik {
         "Sexualität/Anziehung (SX)" to "Intensität, Anziehung und besondere Verbindung.")
     val KERNFRAGE = "Was versuche ich durch mein Verhalten zu erreichen, und welches Gefühl versuche ich dadurch zu vermeiden?"
     val KERNFRAGE_TEXT = "Das eigentlich Spannende an der Selbsterkenntnis ist nicht, sich in einer Typenbeschreibung wiederzufinden, sondern genau das zu erkennen. Darin liegt der Unterschied zwischen einer oberflächlichen Typisierung und echter psychodynamischer Enneagramm-Arbeit."
-    /** Erklärt in ein bis zwei Sätzen, was Normaltyp, Verstärkungstyp und Kontratyp bedeutet. */
-    fun artErklaerung(art: String): String = when (art) {
-        "Verstärkungstyp" -> "Was das bedeutet, Verstärkungstyp: Der Instinkt verstärkt die Grundleidenschaft deines Typs. Sie tritt bei dir besonders deutlich und kräftig hervor."
-        "Kontratyp" -> "Was das bedeutet, Kontratyp: Der Instinkt wirkt der Grundleidenschaft entgegen. Die Grundmotivation bleibt dieselbe, wird aber unbewusst verneint oder versteckt. Deshalb passt das Verhalten oft nicht zum erwarteten Typbild, und der Typ ist schwerer zu erkennen."
-        else -> "Was das bedeutet, Normaltyp: Die Grundleidenschaft deines Typs zeigt sich bei dir in ihrer üblichen Form. Die Typbeschreibung passt meist unmittelbar."
+    private val LEIDENSCHAFT = mapOf(1 to "Zorn", 2 to "Stolz", 3 to "Eitelkeit", 4 to "Neid", 5 to "Geiz", 6 to "Angst, Zweifel", 7 to "Völlerei", 8 to "Lust an Intensität", 9 to "Trägheit")
+
+    /** Erklärt für den Untertyp [sub] (zum Beispiel „SX6“), was es bedeutet, Normaltyp, Verstärkungstyp oder Kontratyp zu sein. */
+    fun artErklaerung(sub: String): String {
+        val typ = sub.drop(2).toIntOrNull() ?: 0
+        val leid = LEIDENSCHAFT[typ] ?: "Grundleidenschaft"
+        val ins = when (sub.take(2)) {
+            "SP" -> "Selbsterhaltung"
+            "SO" -> "Sozial"
+            else -> "Sexuell, Eins-zu-eins"
+        }
+        return when (TypFinder.subKind(sub)) {
+            "Verstärkungstyp" -> "Was es bedeutet, ein Verstärkungstyp zu sein: Dein Instinkt ($ins) verstärkt die Grundleidenschaft deines Typs ($leid). Sie tritt bei dir besonders deutlich und kräftig hervor, und die Typbeschreibung passt oft sehr unmittelbar."
+            "Kontratyp" -> "Was es bedeutet, ein Kontratyp zu sein: Dein Instinkt ($ins) wirkt der Grundleidenschaft deines Typs ($leid) entgegen. Die Grundmotivation bleibt dieselbe, wird aber unbewusst verneint oder versteckt. Deshalb passt dein Verhalten oft nicht zum erwarteten Typbild, und dein Typ ist schwerer zu erkennen."
+            else -> "Was es bedeutet, ein Normaltyp zu sein: Dein Instinkt ($ins) und die Grundleidenschaft deines Typs ($leid) gehen in dieselbe Richtung. Sie zeigt sich bei dir in ihrer üblichen Form, und die Typbeschreibung passt meist unmittelbar."
+        }
     }
 
     val HINWEIS = "Hinweis: Die Beschreibungen sind eine psychologische Interpretation der Enneagramm-Tradition, insbesondere der Untertypenlehre nach Claudio Naranjo."

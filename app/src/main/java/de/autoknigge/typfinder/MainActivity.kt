@@ -365,7 +365,7 @@ class MainActivity : AppCompatActivity() {
                     c.addView(text(dy.entwicklung, 14f, INK), lp(2))
                 }
                 c.addView(text("Art: ${TypFinder.subKind(r.sub)}", 13f, GOLD), lp(6))
-                c.addView(text(Dynamik.artErklaerung(TypFinder.subKind(r.sub)), 12f, DIM), lp(2))
+                c.addView(text(Dynamik.artErklaerung(r.sub), 12f, DIM), lp(2))
                 TypFinder.VERWECHSELT[r.sub]?.let { c.addView(text("Wird oft verwechselt mit: $it", 12f, DIM), lp(2)) }
                 if (r.sub in TypFinder.KONTRA) c.addView(text("Hinweis: Kontratypen sind besonders schwer zu bestimmen, weil der Instinkt der Grundleidenschaft entgegenwirkt.", 12f, DIM), lp(6))
             }
