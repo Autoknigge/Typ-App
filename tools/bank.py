@@ -162,24 +162,25 @@ BL = [
 # ---- Stufe Z: körperliche Hinweise (nur Tendenzen, nie ein Ausschluss: „Nein“ hat bewusst kein Gewicht) ----
 ZK = [
  ("Kaust du an den Fingernägeln?",
-  "Ja, regelmäßig oder früher häufig.", {"9":1,"7":1}, "Z3"),
+  "Ja, regelmäßig oder früher häufig.", {"9":1,"7":1,"8":1}, "Z3"),
  ("Hast du rheumatische Beschwerden oder Arthrose (zum Beispiel Gelenkschmerzen oder Steifheit)?",
   "Ja.", {"7":1}, "Z4"),
 ]
 add(id="Z1", st="Z", q="Wenn du deine Stirn im Spiegel betrachtest: Wie sehen deine Stirnfalten aus? (Mehrere Antworten sind möglich.)",
-    o=[{"t":"Eine ausgeprägte senkrechte Falte zwischen den Augenbrauen (die „Zornesfalte“).","w":{"1":1.5,"9":1.5}},
+    o=[{"t":"Eine ausgeprägte senkrechte Falte zwischen den Augenbrauen (die „Zornesfalte“).","w":{"1":1.5,"9":1.5,"8":1.5}},
        {"t":"Querfalten, die wie ein V auf der Stirn angeordnet sind.","w":{"3":1.5}},
        {"t":"Eher glatt oder andere Falten, ohne senkrechte Falte und ohne V.","w":{}}])
-# Haut (Mehrfachantwort). Nur Tendenzen: „Keine davon“ spricht eher für andere Typen (2, 3, 5, 8), schließt aber nichts aus.
+# Haut (Mehrfachantwort). Nur Tendenzen: „Keine davon“ spricht eher für andere Typen (2, 3, 5), schließt aber nichts aus.
 add(id="ZH", st="Z", q="Hast oder hattest du eine der folgenden Haut- oder anderen Erkrankungen oder Beschwerden? (Mehrere Antworten sind möglich. Das sind nur Hinweise, keine Diagnosen, und schließen keinen Typ aus.)",
-    o=[{"t":"Ausgeprägte Akne.","w":{"6":1,"9":1,"1":1,"4":1}},
+    o=[{"t":"Ausgeprägte Akne.","w":{"6":1,"9":1,"1":1,"4":1,"8":1}},
+       {"t":"Schuppenflechte (Psoriasis).","w":{"8":1}},
        {"t":"Vitiligo (Weißfleckenkrankheit).","w":{"4":1,"7":1}},
-       {"t":"Neurodermitis.","w":{"9":1}},
-       {"t":"Juckende Kopfhaut.","w":{"9":1}},
-       {"t":"Allergien oder Überempfindlichkeiten.","w":{"9":1,"4":1}},
+       {"t":"Neurodermitis.","w":{"9":1,"8":1}},
+       {"t":"Juckende Kopfhaut.","w":{"9":1,"8":1}},
+       {"t":"Allergien oder Überempfindlichkeiten.","w":{"9":1,"4":1,"8":1}},
        {"t":"Tumorerkrankung (auch früher).","w":{"1":1}},
        {"t":"Blinddarmentzündung oder -entfernung (auch früher).","w":{"7":1}},
-       {"t":"Keine davon.","w":{"2":0.5,"3":0.5,"5":0.5,"8":0.5},"x":True}])
+       {"t":"Keine davon.","w":{"2":0.5,"3":0.5,"5":0.5},"x":True}])
 # Weitere körperliche Hinweise aus der Symptomliste (Mehrfachantwort). Nur Tendenzen, nie ein Ausschluss, keine Diagnose.
 ZX_HINT = " (Mehrere Antworten sind möglich. Das sind nur Hinweise, keine Diagnosen, und schließen keinen Typ aus.)"
 ZX = [
@@ -202,7 +203,7 @@ ZX = [
    ("Stottern oder holpriges Sprechen.", {"3":1,"5":1}),
    ("Häufiger Schluckauf.", {"2":1,"4":1,"5":1,"7":1,"8":1})]),
  ("ZC", "Trifft etwas davon auf deine Sinne oder deine Empfindlichkeit zu?",
-  [("Ich bin geräusch- oder lärmempfindlich.", {"7":1,"9":1}),
+  [("Ich bin geräusch- oder lärmempfindlich.", {"7":1,"9":1,"8":1}),
    ("Mein Geruchssinn ist besonders empfindlich.", {"7":1}),
    ("Ich habe auffällige Augenringe.", {"3":1,"8":1}),
    ("Netzhautablösung (auch früher).", {"7":1}),
@@ -241,7 +242,7 @@ add(id="ZP", st="Z", q="Trifft etwas davon auf dich zu oder traf es zeitweise zu
        {"t":"Alkohol- oder Nikotinsucht.","w":{"7":1}},
        {"t":"Glücksspielsucht.","w":{"7":1,"9":1}},
        {"t":"ADHS.","w":{"7":1}},
-       {"t":"Prüfungsangst.","w":{"9":1}},
+       {"t":"Prüfungsangst.","w":{"9":1,"8":1}},
        {"t":"Keine davon.","w":{},"x":True}])
 for i,(q,opts) in enumerate(BL,1):
     add(id=f"BL{i}", st="K", q=q, o=[{"t":t_,"w":w_} for t_,w_ in opts])
