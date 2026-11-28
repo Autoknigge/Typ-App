@@ -20,16 +20,16 @@ jobs:
       KS_ALIAS: ${{ secrets.KEY_ALIAS }}
       KS_KEY_PW: ${{ secrets.KEY_PASSWORD }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # ganze Historie: die Versionsnummer zählt die Commits
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "17"
 
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: "8.11.1"
 
@@ -37,7 +37,7 @@ jobs:
         if: env.HAS_KEYSTORE != 'true'
         run: gradle assembleDebug --no-daemon
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: env.HAS_KEYSTORE != 'true'
         with:
           name: Typfinder-Test
@@ -69,7 +69,7 @@ jobs:
           cp app/build/outputs/apk/release/app-release.apk Typfinder.apk
           cp app/build/outputs/bundle/release/app-release.aab Typfinder.aab
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: env.HAS_KEYSTORE == 'true'
         with:
           name: Typfinder
@@ -79,7 +79,7 @@ jobs:
 
       - name: GitHub-Release (bei Tag, z. B. 1.0)
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             Typfinder.apk
